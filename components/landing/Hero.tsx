@@ -6,7 +6,7 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
   const words = ['No', 'automatizamos', 'decisiones,', 'las', 'dirigimos.'];
 
   return (
-    <section className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 text-white">
+    <section className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 text-white pt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
