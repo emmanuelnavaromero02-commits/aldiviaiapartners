@@ -58,6 +58,10 @@ export class ComputeStack extends cdk.Stack {
     const amplifyApp = new amplify.CfnApp(this, 'ValdiviaAmplifyApp', {
       name: 'valdiviaiapartners-sap-ai',
       description: 'ValdiviIA Partners SAP AI Next.js 14 application',
+      repository: 'https://github.com/emmanuelnavaromero02-commits/aldiviaiapartners',
+      accessToken: cdk.SecretValue.secretsManager(
+        '/github/emmanuelnavaromero02-commits/aldiviaiapartners/token',
+      ).unsafeUnwrap(),
       iamServiceRole: amplifyDeploymentRole.roleArn,
       computeRoleArn: amplifyDeploymentRole.roleArn,
       platform: 'WEB_COMPUTE',
@@ -98,8 +102,8 @@ export class ComputeStack extends cdk.Stack {
       appId: amplifyApp.attrAppId,
       branchName: 'main',
       description: 'Production branch for valdiviaiapartners-sap.ai',
-      enableAutoBuild: false,
-      enablePullRequestPreview: false,
+      enableAutoBuild: true,
+      enablePullRequestPreview: true,
       framework: 'Next.js - SSR',
       stage: 'PRODUCTION',
       computeRoleArn: amplifyDeploymentRole.roleArn,
