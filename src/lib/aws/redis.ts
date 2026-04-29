@@ -1,34 +1,38 @@
-import { createClient, type RedisClientType } from 'redis';
+import Redis from 'ioredis';
 
 declare global {
   // eslint-disable-next-line no-var
-  var valdiviaRedisClientPromise: Promise<RedisClientType> | undefined;
+  var valdiviaRedisClient: Redis | undefined;
 }
 
-export function getRedisClient(): Promise<RedisClientType> {
-  if (!globalThis.valdiviaRedisClientPromise) {
+export async function getRedisClient(): Promise<Redis> {
+  if (!globalThis.valdiviaRedisClient) {
     const redisHost = process.env.REDIS_HOST;
-    const redisPort = process.env.REDIS_PORT ?? '6379';
+    const redisPort = parseInt(process.env.REDIS_PORT ?? '6379', 10);
 
     if (!redisHost) {
       throw new Error('REDIS_HOST is required');
     }
 
-    const client = createClient({
-      url: `rediss://${redisHost}:${redisPort}`,
-      socket: {
-        tls: true,
-      },
+    const client = new Redis({
+      host: redisHost,
+      port: redisPort,
+      lazyConnect: true,
+      maxRetriesPerRequest: 3,
     });
 
     client.on('error', (error) => {
       console.error('Redis client error', error);
     });
 
-    globalThis.valdiviaRedisClientPromise = client.connect() as Promise<RedisClientType>;
+    globalThis.valdiviaRedisClient = client;
   }
 
-  return globalThis.valdiviaRedisClientPromise;
+  if (globalThis.valdiviaRedisClient.status === 'wait') {
+    await globalThis.valdiviaRedisClient.connect();
+  }
+
+  return globalThis.valdiviaRedisClient;
 }
 
 export interface RateLimitResult {
