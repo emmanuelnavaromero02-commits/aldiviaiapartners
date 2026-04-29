@@ -7,7 +7,6 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-
   useEffect(() => {
     if (!inView) return;
     let start = 0;
@@ -19,7 +18,6 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
     }, 16);
     return () => clearInterval(timer);
   }, [inView, target]);
-
   return (
     <span ref={ref} className="text-4xl font-black text-navy">
       {count}{suffix}
@@ -33,13 +31,27 @@ export default function SocialProof() {
       <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">
         Empresas que confían en la dirección inteligente
       </p>
-      <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4 mb-14">
+
+      {/* Client Links Section */}
+      <div className="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-x-12 gap-y-6 mb-16">
         {CLIENTS.map((client) => (
-          <span key={client} className="text-gray-400 font-bold text-sm hover:text-navy transition-colors cursor-default">
-            {client}
-          </span>
+          <a
+            key={client.name}
+            href={client.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`font-bold transition-colors cursor-pointer ${
+              client.weight === 2
+                ? 'text-gray-400 hover:text-navy text-2xl md:text-3xl tracking-tight'
+                : 'text-gray-300 hover:text-electric text-lg'
+            }`}
+          >
+            {client.name}
+          </a>
         ))}
       </div>
+
+      {/* Metrics Section */}
       <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
         {METRICS.map((m) => (
           <div key={m.label}>
