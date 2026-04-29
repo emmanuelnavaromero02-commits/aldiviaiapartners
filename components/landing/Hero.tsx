@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
   const words = ['No', 'automatizamos', 'decisiones,', 'las', 'dirigimos.'];
@@ -42,14 +43,14 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
           transition={{ delay: 1.1, duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <button className="px-8 py-4 bg-electric text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
-            Ver Soluciones
-          </button>
+          <Link href="/agendar" className="px-8 py-4 bg-electric text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center">
+            Agendar Consultoría
+          </Link>
           <button
             onClick={onOpenVideo}
             className="px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
           >
-            ▶ Agendar Asesoría
+            ▶ Ver Demo Técnica
           </button>
         </motion.div>
       </motion.div>
