@@ -23,8 +23,9 @@ export default function ContactForm() {
     name: '', email: '', company: '', industry: '', message: '',
   });
 
-  const update = (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm(prev => ({ ...prev, [field]: e.target.value }));
+  const update = (field: keyof FormData) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm(prev => ({ ...prev, [field]: e.target.value }));
 
   const canAdvance = () => {
     if (step === 0) return form.name.trim() !== '' && form.email.trim() !== '';
@@ -42,7 +43,6 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
-
       if (res.status === 429) {
         setStatus('ratelimit');
         setRetryAfter(data.retryAfter ?? 60);
@@ -85,7 +85,6 @@ export default function ContactForm() {
         <h2 className="text-4xl font-black text-white text-center mb-3">Hablemos</h2>
         <p className="text-white/50 text-center mb-10">Cuéntanos tu reto. Respondemos en menos de 24h.</p>
 
-        {/* Progress bar */}
         <div className="flex items-center gap-2 mb-10">
           {STEPS.map((label, i) => (
             <div key={label} className="flex-1 flex flex-col items-center gap-1">
@@ -95,7 +94,6 @@ export default function ContactForm() {
           ))}
         </div>
 
-        {/* Rate limit warning */}
         {status === 'ratelimit' && (
           <div className="mb-6 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm flex items-center gap-2">
             <span>⏱</span>
@@ -103,14 +101,12 @@ export default function ContactForm() {
           </div>
         )}
 
-        {/* Error warning */}
         {status === 'error' && (
           <div className="mb-6 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
             {errorMsg}
           </div>
         )}
 
-        {/* Steps */}
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
@@ -138,7 +134,6 @@ export default function ContactForm() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation */}
         <div className="flex gap-3 mt-8">
           {step > 0 && (
             <button
