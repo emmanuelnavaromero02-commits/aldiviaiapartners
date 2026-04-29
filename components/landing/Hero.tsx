@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
-  const words = ['Inteligencia', 'Artificial', 'que', 'transforma', 'empresas.'];
+  const words = ['No', 'automatizamos', 'decisiones,', 'las', 'dirigimos.'];
 
   return (
     <section className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 text-white">
@@ -12,6 +12,9 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
         transition={{ duration: 0.6 }}
         className="text-center max-w-4xl"
       >
+        <p className="text-electric text-sm font-semibold uppercase tracking-widest mb-4">
+          Consultoría SAP + IA para empresas que lideran
+        </p>
         <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-tight mb-6">
           {words.map((word, i) => (
             <motion.span
@@ -31,7 +34,7 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto"
         >
-          ValdiviIA Partners diseña e implementa soluciones de IA enterprise sobre infraestructura AWS nativa.
+          Convertimos inteligencia en dirección estratégica, respaldada por mentes expertas.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -40,13 +43,13 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <button className="px-8 py-4 bg-electric text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
-            Solicita una Demo
+            Ver Soluciones
           </button>
           <button
             onClick={onOpenVideo}
             className="px-8 py-4 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
           >
-            ▶ Ver Demo
+            ▶ Agendar Asesoría
           </button>
         </motion.div>
       </motion.div>
@@ -60,7 +63,7 @@ export default function Hero({ onOpenVideo }: { onOpenVideo: () => void }) {
       >
         <div className="flex flex-col items-center gap-3 text-white/50 group-hover:text-white/80 transition-colors">
           <div className="w-16 h-16 rounded-full border-2 border-current flex items-center justify-center text-2xl">▶</div>
-          <span className="text-sm font-medium">Vista previa del producto</span>
+          <span className="text-sm font-medium">Ver cómo trabajamos</span>
         </div>
       </motion.div>
     </section>

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
-import { METRICS } from '@/lib/constants';
+import { METRICS, CLIENTS } from '@/lib/constants';
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -11,8 +11,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const duration = 1800;
-    const step = Math.ceil(target / (duration / 16));
+    const step = Math.ceil(target / (1800 / 16));
     const timer = setInterval(() => {
       start += step;
       if (start >= target) { setCount(target); clearInterval(timer); }
@@ -31,7 +30,17 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 export default function SocialProof() {
   return (
     <section className="bg-surface py-16 px-6">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+      <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">
+        Empresas que confían en la dirección inteligente
+      </p>
+      <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4 mb-14">
+        {CLIENTS.map((client) => (
+          <span key={client} className="text-gray-400 font-bold text-sm hover:text-navy transition-colors cursor-default">
+            {client}
+          </span>
+        ))}
+      </div>
+      <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
         {METRICS.map((m) => (
           <div key={m.label}>
             <Counter target={m.value} suffix={m.suffix} />

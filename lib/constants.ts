@@ -1,26 +1,40 @@
 export const METRICS = [
-  { value: 50, suffix: 'M+', label: 'Datos Procesados' },
-  { value: 98, suffix: '%', label: 'Uptime Garantizado' },
-  { value: 120, suffix: '+', label: 'Clientes Enterprise' },
+  { value: 30, suffix: '%', label: 'Optimización de procesos' },
+  { value: 25, suffix: '%', label: 'Reducción de costos operativos' },
+  { value: 5, suffix: 'x', label: 'Decisiones más rápidas' },
+  { value: 100, suffix: '%', label: 'Respaldo y validación humana' },
+];
+
+export const CLIENTS = [
+  'PEMEX', 'FEMSA', 'Grupo Modelo', 'Telmex', 'IBM',
+  'Liverpool', 'Grupo México', 'Grupo ICA', 'Mexichem',
+  'MABE', 'EPI-USE', 'Mexigas', 'Arendal', 'Gigante',
+  'Whirlpool Guatemala', 'API-SCT',
 ];
 
 export const SOLUTIONS = [
   {
-    icon: 'Brain',
-    title: 'IA Predictiva',
-    summary: 'Modelos que anticipan decisiones críticas.',
-    detail: 'Desplegamos pipelines de ML en tu infraestructura AWS existente, reduciendo el time-to-insight de semanas a horas.',
+    icon: 'Database',
+    title: 'Consultoría SAP + IA',
+    summary: 'Optimización y automatización inteligente sobre tu ecosistema SAP.',
+    detail: 'Desplegamos modelos de IA directamente sobre SAP para automatizar procesos críticos, reducir errores y acelerar la toma de decisiones.',
   },
   {
-    icon: 'BarChart3',
-    title: 'Analytics Avanzado',
-    summary: 'Dashboards en tiempo real sobre tus datos.',
-    detail: 'Conectamos tus fuentes de datos heterogéneas y construimos visualizaciones ejecutivas accionables.',
+    icon: 'Brain',
+    title: 'Inteligencia Empresarial',
+    summary: 'Modelos de datos y analítica predictiva para convertir información en dirección.',
+    detail: 'Transformamos tus datos heterogéneos en dashboards ejecutivos accionables con predicciones en tiempo real.',
+  },
+  {
+    icon: 'Settings',
+    title: 'Automatización Estratégica',
+    summary: 'Procesos eficientes con IA y supervisión experta que asegura precisión.',
+    detail: 'Automatizamos flujos operativos complejos manteniendo criterio humano en cada decisión crítica.',
   },
   {
     icon: 'Shield',
-    title: 'AI Governance',
-    summary: 'Cumplimiento y trazabilidad de modelos.',
-    detail: 'Auditabilidad completa, control de sesgos y cumplimiento regulatorio para sectores financiero y salud.',
+    title: 'Implementación IA',
+    summary: 'Soluciones a la medida, escalables y enfocadas en resultados de negocio.',
+    detail: 'Diseñamos e implementamos soluciones de IA enterprise adaptadas a tu industria y objetivos estratégicos.',
   },
 ];

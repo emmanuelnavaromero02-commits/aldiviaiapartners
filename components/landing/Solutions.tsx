@@ -1,22 +1,25 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, BarChart3, Shield } from 'lucide-react';
+import { Database, Brain, Settings, Shield } from 'lucide-react';
 import { SOLUTIONS } from '@/lib/constants';
 
-const iconMap: Record<string, React.ElementType> = { Brain, BarChart3, Shield };
+const iconMap: Record<string, React.ElementType> = { Database, Brain, Settings, Shield };
 
 export default function Solutions() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <section className="bg-white py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-black text-navy text-center mb-4">Nuestras Soluciones</h2>
-        <p className="text-center text-gray-500 mb-14 max-w-xl mx-auto">
-          Capacidades de IA diseñadas para escalar en entornos enterprise críticos.
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-electric mb-3">
+          Nuestra propuesta de valor
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h2 className="text-4xl font-black text-navy text-center mb-4">IA con respaldo humano real</h2>
+        <p className="text-center text-gray-500 mb-14 max-w-2xl mx-auto">
+          No solo implementamos tecnología. Combinamos inteligencia artificial avanzada con experiencia humana especializada para <strong>dirigir, validar y garantizar</strong> resultados reales.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SOLUTIONS.map((s, i) => {
             const Icon = iconMap[s.icon];
             return (
