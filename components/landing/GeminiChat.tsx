@@ -51,7 +51,7 @@ export default function GeminiChat() {
             <div className="bg-navy px-4 py-3 flex items-center justify-between">
               <div>
                 <p className="text-white font-bold text-sm">Asistente ValdiviIA</p>
-                <p className="text-white/50 text-xs">Powered by Gemini</p>
+                <p className="text-white/50 text-xs">IA con criterio humano</p>
               </div>
               <button onClick={() => setOpen(false)} className="text-white/50 hover:text-white">
                 <X size={18} />

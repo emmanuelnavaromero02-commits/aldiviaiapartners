@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     if (!apiKey) return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
 
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -35,9 +35,16 @@ export async function POST(req: NextRequest) {
     );
 
     const data = await res.json();
+
+    if (!res.ok) {
+      console.error('[Gemini API error]', data);
+      return NextResponse.json({ error: 'Gemini error', detail: data }, { status: 500 });
+    }
+
     const reply = data.candidates?.[0]?.content?.parts?.[0]?.text ?? 'No pude procesar tu consulta.';
     return NextResponse.json({ reply });
-  } catch {
+  } catch (err) {
+    console.error('[/api/chat] Error:', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
