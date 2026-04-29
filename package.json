@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.1",
     "@aws-sdk/client-dynamodb": "^3.1038.0",
     "@aws-sdk/client-elasticache": "^3.1038.0",
     "@aws-sdk/client-eventbridge": "^3.1038.0",
+    "@aws-sdk/client-ses": "^3.1039.0",
     "@aws-sdk/client-sqs": "^3.1038.0",
     "@aws-sdk/lib-dynamodb": "^3.1038.0",
     "@google/generative-ai": "^0.24.1",
@@ -23,6 +25,7 @@
     "ioredis": "^5.10.1",
     "lucide-react": "^1.14.0",
     "next": "14.2.35",
+    "nodemailer": "^8.0.7",
     "react": "^18",
     "react-dom": "^18",
     "react-player": "^3.4.0",
@@ -30,6 +33,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

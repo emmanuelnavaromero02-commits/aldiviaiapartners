@@ -54,6 +54,11 @@ export default function ContactForm() {
         return;
       }
       setStatus('success');
+      fetch('/api/notify-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      }).catch(() => {});
     } catch {
       setStatus('error');
       setErrorMsg('No se pudo conectar con el servidor.');
