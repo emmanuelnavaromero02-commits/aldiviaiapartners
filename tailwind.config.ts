@@ -12,6 +12,10 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        navy: "#0D1B2A",
+        electric: "#0057FF",
+        surface: "#F7F9FC",
+        success: "#00C896",
       },
     },
   },
