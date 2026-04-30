@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 type IncomingMessage = { role?: string; text?: string; content?: string };
 
 const DEMO_SYSTEM = `Eres el copiloto de IA de ValdiviIA Partners integrado en SAP para la empresa ficticia "Corporativo Industrias MX S.A. de C.V." — una empresa manufacturera mexicana con 1,248 empleados y operaciones en 5 plantas.
@@ -96,6 +92,10 @@ export async function POST(req: NextRequest) {
     const { message, history, module: mod } = await req.json();
     if (!message) return NextResponse.json({ error: 'Message required' }, { status: 400 });
     if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'GROQ_API_KEY not configured' }, { status: 500 });
+
+    const groq = new Groq({
+      apiKey: process.env.GROQ_API_KEY,
+    });
 
     const historyMessages = Array.isArray(history)
       ? history

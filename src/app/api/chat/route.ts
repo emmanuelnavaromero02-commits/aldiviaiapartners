@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 type IncomingMessage = { role?: string; text?: string; content?: string };
 
 const SYSTEM_PROMPT = `Eres el asistente virtual de ValdiviIA Partners, una consultora de IA enterprise especializada en SAP + IA.
@@ -22,6 +18,10 @@ export async function POST(req: NextRequest) {
     const { message, history } = await req.json();
     if (!message) return NextResponse.json({ error: 'Message required' }, { status: 400 });
     if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'GROQ_API_KEY not configured' }, { status: 500 });
+
+    const groq = new Groq({
+      apiKey: process.env.GROQ_API_KEY,
+    });
 
     const historyMessages = Array.isArray(history)
       ? history
