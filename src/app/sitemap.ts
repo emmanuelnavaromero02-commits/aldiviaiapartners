@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/soluciones/sap-ia`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/casos-de-exito`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/sostenibilidad`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/agendar`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/contacto`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/legal/privacidad`, lastModified, changeFrequency: 'yearly', priority: 0.3 },

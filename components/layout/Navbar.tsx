@@ -45,6 +45,7 @@ const NAV_ITEMS = [
           { icon: Users, label: 'Sobre Nosotros', desc: 'Misión, visión y equipo directivo', href: '/nosotros' },
           { icon: Trophy, label: 'Casos de Éxito', desc: 'Resultados reales con clientes', href: '/casos-de-exito' },
           { icon: BookOpen, label: 'Blog y Novedades', desc: 'Tendencias en IA enterprise', href: '/blog' },
+          { icon: Shield, label: 'Sostenibilidad', desc: 'Tecnología que cuida el planeta', href: '/sostenibilidad' },
         ],
       },
       {
