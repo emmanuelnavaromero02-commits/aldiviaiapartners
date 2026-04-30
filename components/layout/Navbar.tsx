@@ -201,10 +201,16 @@ export default function Navbar() {
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
             <Link
+              href="/demo"
+              className="hidden lg:flex px-5 py-2 border border-electric/50 text-electric text-sm font-semibold rounded-lg hover:bg-electric hover:text-white transition-colors"
+            >
+              Ver demo SAP
+            </Link>
+            <Link
               href="/agendar"
               className="hidden lg:flex px-5 py-2 bg-electric text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition-colors"
             >
-              Agendar demo gratis
+              Agendar gratis
             </Link>
             <button
               onClick={() => setMobileOpen(o => !o)}
