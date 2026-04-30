@@ -15,13 +15,36 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'ValdiviIA Partners — Consultoría SAP + IA Enterprise',
-  description: 'No automatizamos decisiones, las dirigimos. Inteligencia artificial con respaldo humano real para empresas enterprise.',
-  keywords: 'SAP, IA, inteligencia artificial, consultoría, enterprise, automatización, PEMEX, FEMSA',
+  title: {
+    default: 'ValdiviIA Partners — Consultoría SAP + IA Enterprise',
+    template: '%s | ValdiviIA Partners',
+  },
+  description: 'Consultoría líder en SAP + Inteligencia Artificial para empresas enterprise en México, LATAM, USA y Europa. No automatizamos decisiones, las dirigimos. +20 años de experiencia. PEMEX, FEMSA, IBM, Grupo Modelo.',
+  keywords: ['SAP', 'Inteligencia Artificial', 'consultoría SAP', 'IA enterprise', 'SAP S/4HANA', 'transformación digital', 'automatización', 'PEMEX', 'FEMSA', 'IBM', 'México', 'LATAM'],
+  authors: [{ name: 'Rodolfo Valdivia', url: 'https://valdiviaiapartners-sap.ai' }],
+  creator: 'ValdiviIA Partners',
+  publisher: 'ValdiviIA Partners',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
-    title: 'ValdiviIA Partners',
-    description: 'No automatizamos decisiones, las dirigimos.',
     type: 'website',
+    locale: 'es_MX',
+    url: 'https://valdiviaiapartners-sap.ai',
+    siteName: 'ValdiviIA Partners',
+    title: 'ValdiviIA Partners — Consultoría SAP + IA Enterprise',
+    description: 'No automatizamos decisiones, las dirigimos. IA con criterio humano para empresas enterprise.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ValdiviIA Partners — SAP + IA Enterprise',
+    description: 'No automatizamos decisiones, las dirigimos.',
+    creator: '@valdiviaIA',
+  },
+  alternates: {
+    canonical: 'https://valdiviaiapartners-sap.ai',
   },
 };
 

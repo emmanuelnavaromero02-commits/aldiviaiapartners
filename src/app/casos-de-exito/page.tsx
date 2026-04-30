@@ -41,7 +41,7 @@ const CASES = [
 
 export default function CasosPage() {
   return (
-    <main className="min-h-screen bg-surface">
+    <main className="min-h-screen" style={{ background: '#FAF7F2' }}>
       {/* Hero */}
       <div className="bg-navy pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto text-center">

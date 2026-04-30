@@ -26,7 +26,7 @@ const MILESTONES = [
 
 export default function NosotrosPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ background: '#FAF7F2' }}>
       {/* Hero */}
       <div className="bg-navy pt-32 pb-24 px-6">
         <div className="max-w-4xl mx-auto text-center">

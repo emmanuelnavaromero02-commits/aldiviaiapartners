@@ -16,6 +16,8 @@ const config: Config = {
         electric: "#0057FF",
         surface: "#F7F9FC",
         success: "#00C896",
+        bone: "#F5F0E8",
+        cream: "#FAF7F2",
       },
     },
   },
