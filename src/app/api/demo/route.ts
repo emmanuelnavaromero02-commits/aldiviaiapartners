@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
+import Groq from 'groq-sdk';
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
+
+type IncomingMessage = { role?: string; text?: string; content?: string };
 
 const DEMO_SYSTEM = `Eres el copiloto de IA de ValdiviIA Partners integrado en SAP para la empresa ficticia "Corporativo Industrias MX S.A. de C.V." — una empresa manufacturera mexicana con 1,248 empleados y operaciones en 5 plantas.
 
@@ -91,26 +95,32 @@ export async function POST(req: NextRequest) {
   try {
     const { message, history, module: mod } = await req.json();
     if (!message) return NextResponse.json({ error: 'Message required' }, { status: 400 });
+    if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'GROQ_API_KEY not configured' }, { status: 500 });
 
-    const messages = [
-      ...(history || []).map((m: { role: string; text: string }) => ({
-        role: m.role === 'user' ? 'user' : 'assistant',
-        content: m.text,
-      })),
-      { role: 'user', content: `[Módulo activo: ${mod || 'General'}] ${message}` },
-    ] as Anthropic.MessageParam[];
+    const historyMessages = Array.isArray(history)
+      ? history
+          .filter((m: IncomingMessage) => (m.text || m.content) && (m.role === 'user' || m.role === 'assistant'))
+          .map((m: IncomingMessage) => ({
+            role: m.role as 'user' | 'assistant',
+            content: String(m.text ?? m.content),
+          }))
+      : [];
 
-    const response = await client.messages.create({
-      model: 'claude-opus-4-5',
+    const completion = await groq.chat.completions.create({
+      messages: [
+        { role: 'system', content: DEMO_SYSTEM },
+        ...historyMessages,
+        { role: 'user', content: `[Módulo activo: ${mod || 'General'}] ${String(message)}` },
+      ],
+      model: 'llama-3.1-8b-instant',
+      temperature: 0.4,
       max_tokens: 500,
-      system: DEMO_SYSTEM,
-      messages,
     });
 
-    const reply = response.content[0].type === 'text' ? response.content[0].text : 'Error al procesar.';
+    const reply = completion.choices[0]?.message?.content || 'Error al procesar.';
     return NextResponse.json({ reply });
   } catch (err) {
-    console.error('[/api/demo] Error:', err);
+    console.error('Groq Demo API Error:', err);
     return NextResponse.json({ error: 'Error interno.' }, { status: 500 });
   }
 }

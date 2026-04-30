@@ -5,6 +5,8 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
+type IncomingMessage = { role?: string; text?: string; content?: string };
+
 const SYSTEM_PROMPT = `Eres el asistente virtual de ValdiviIA Partners, una consultora de IA enterprise especializada en SAP + IA.
 Servicios:
 - Consultoría SAP + IA: optimización inteligente sobre SAP.
@@ -17,15 +19,26 @@ Responde en español, de forma profesional, directa y concisa (máximo 3 oracion
 
 export async function POST(req: NextRequest) {
   try {
-    const { message } = await req.json();
+    const { message, history } = await req.json();
     if (!message) return NextResponse.json({ error: 'Message required' }, { status: 400 });
+    if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'GROQ_API_KEY not configured' }, { status: 500 });
+
+    const historyMessages = Array.isArray(history)
+      ? history
+          .filter((m: IncomingMessage) => (m.text || m.content) && (m.role === 'user' || m.role === 'assistant'))
+          .map((m: IncomingMessage) => ({
+            role: m.role as 'user' | 'assistant',
+            content: String(m.text ?? m.content),
+          }))
+      : [];
 
     const completion = await groq.chat.completions.create({
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: message }
+        ...historyMessages,
+        { role: 'user', content: String(message) }
       ],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.1-8b-instant',
       temperature: 0.7,
       max_tokens: 200,
     });
